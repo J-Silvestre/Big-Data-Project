@@ -61,6 +61,8 @@ plt.show()
 
 # Question 3 ----------------------------------------------------------------
 # Which years had record temperatures? Are there also record Co2 emissions in those years?
+temp_largest = Temp.nlargest(5, "AvgTemperature")
+co2_largest = co2_95_overall.nlargest(5, "co2")
 
 print(Temp.nlargest(5, "AvgTemperature"))
 print(co2_95_overall.nlargest(5, "co2"))
