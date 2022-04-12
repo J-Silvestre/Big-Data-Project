@@ -48,9 +48,9 @@ co2_95_overall = co2_95["co2"].mean().reset_index() #averaging values for each y
 
 
 
-plt.plot(Temp.Year, Temp.AvgTemperature)
+#plt.plot(Temp.Year, Temp.AvgTemperature)
 
-plt.show()
+#plt.show()
 
 #Temp["Year"] = pd.to_datetime(Temp["Year"])
 
@@ -97,22 +97,23 @@ plt.show()
 
 
 
-
 # Question 3 ----------------------------------------------------------------
 # Which years had record temperatures? Are there also record Co2 emissions in those years?
-print(Temp)
-print(co2_95_overall)
 
+plt.plot(Temp.Year, Temp.AvgTemperature)
+plt.xlabel('Year')
+plt.ylabel('Average Temperature')
+plt.title('Average Temperature plot over time')
+plt.show()
+print(Temp.nlargest(5, "AvgTemperature"))
 
-
-
-
-
-
-
-
-
-
+plt.plot(co2_95_overall.year, co2_95_overall.co2)
+plt.xlabel('Year')
+plt.ylabel('Co2 Emissions')
+plt.title('Co2 Emissions over time')
+plt.show()
+plt.show()
+print(co2_95_overall.nlargest(5, "co2"))
 
 
 
