@@ -37,7 +37,8 @@ Temp=temperatureYear["AvgTemperature"].mean().reset_index() #averging values for
 co2_year = co2.groupby(["year"]) #grouping co2 by year
 co2_overall = co2_year["co2"].mean().reset_index() #averaging values for each year
 
-co2_95 = co2[co2["year"]>1994].groupby(["year"]) # matching co2 year range with the climate year range
+co2_95 = co2[co2["year"]>1994] # matching co2 year range with the climate year range
+co2_95 = co2_95[co2_95["year"]<2020].groupby(["year"]) #matching co2 year range with climate year range
 co2_95_overall = co2_95["co2"].mean().reset_index() #averaging values for each year
 
 
@@ -98,6 +99,7 @@ plt.show()
 
 
 # Question 3 ----------------------------------------------------------------
+# Which years had record temperatures? Are there also record Co2 emissions in those years?
 print(Temp)
 print(co2_95_overall)
 
