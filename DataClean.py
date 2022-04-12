@@ -15,18 +15,18 @@ import statsmodels.api as sm
 #rodrigo
 #url = "C:\\Users\\rodri\\OneDrive - ISEG\\iseg 22092021\\Iseg\\Master\\2semester\\Big Data Tools and Analytics\\data\\city_temperature.csv"
 #Joao
-#url = "C:\\Users\\joaod\\Desktop\\Big Data Tools\\Group Project\\city_temperature.csv"
+url = "C:\\Users\\joaod\\Desktop\\Big Data Tools\\Group Project\\city_temperature.csv"
 #Rosanna
-url = "C:\\Users\\Rosan\\OneDrive - ISEG\\2 BDTA_Big Data Tools and Analytics\\Group Project\\Project Data\\city_temperature.csv"
+#url = "C:\\Users\\Rosan\\OneDrive - ISEG\\2 BDTA_Big Data Tools and Analytics\\Group Project\\Project Data\\city_temperature.csv"
 
 temperature = pd.read_csv(url)
 
 #Rodrigo
 #url2="C:\\Users\\rodri\\OneDrive - ISEG\\iseg 22092021\\Iseg\\Master\\2semester\\Big Data Tools and Analytics\\data\\co2_data.csv"
 #Joao
-#url2 = "C:\\Users\\joaod\\Desktop\\Big Data Tools\\Group Project\\co2_data.csv"
+url2 = "C:\\Users\\joaod\\Desktop\\Big Data Tools\\Group Project\\co2_data.csv"
 #Rosanna
-url2 = "C:\\Users\\Rosan\\OneDrive - ISEG\\2 BDTA_Big Data Tools and Analytics\\Group Project\\Project Data\\co2_data.csv"
+#url2 = "C:\\Users\\Rosan\\OneDrive - ISEG\\2 BDTA_Big Data Tools and Analytics\\Group Project\\Project Data\\co2_data.csv"
 
 co2 = pd.read_csv(url2)
 
@@ -72,11 +72,16 @@ plt.show()
 
 # Question 3 ----------------------------------------------------------------
 # Which years had record temperatures? Are there also record Co2 emissions in those years?
-temp_largest = Temp.nlargest(5, "AvgTemperature")
-co2_largest = co2_95_overall.nlargest(5, "co2")
+co2_largest = co2_95_overall[co2_95_overall["year"]>2011]
+temp_largest = Temp[Temp["Year"]>2011]
 
-
-
+ax1 = co2_largest.co2.plot(color='blue', grid=True, label='Co2 Emissions')
+ax2 = temp_largest.AvgTemperature.plot(color='red', grid=True, secondary_y=True, label='Average Temperature')
+h1, l1 = ax1.get_legend_handles_labels()
+h2, l2 = ax2.get_legend_handles_labels()
+plt.legend(h1+h2, l1+l2, loc=2)
+plt.xlabel('Year')
+plt.show()
 
 
 
@@ -178,11 +183,39 @@ plt.show()
 # Question 5 ----------------------------------------------------------------
 # How does the Co2 emissions relate with the temperature changes? Is there a relation?
 
+# Fit a linear regression model and calculate the R-square
 x = co2_95_overall["co2"] #co2 as independent variable
 y = Temp["AvgTemperature"] #temperature as dependent variable
 
-plt.plot(x, y, "o")
-plt.draw()
+x1 = sm.add_constant(x)
+model = sm.OLS(y, x1)
+result = model.fit()
+z = result.predict(x1)
+result.summary()
+
+# Plot linear regression model and effective data
+fig, ax = plt.subplots(figsize=(8,6))
+plt.xlabel('co2 (in million tonnes)')
+plt.ylabel('Average Temperature (in Fahrenheit)')
+plt.title('Linear Regression Model')
+
+ax.plot(x, y, "o")
+ax.plot(x, z, "-")
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
