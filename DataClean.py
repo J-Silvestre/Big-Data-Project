@@ -43,7 +43,7 @@ Temp=temperatureYear["AvgTemperature"].mean().reset_index() #averging values for
 co2= co2[["iso_code","country","year","co2","consumption_co2","co2_growth_prct","co2_growth_abs","co2_per_capita"]]
 co2["id"] = co2.index
 co2=co2.set_index("id")
-
+co2_country= co2.groupby("country")
 co2_year = co2.groupby(["year"]) #grouping co2 by year
 co2_overall = co2_year["co2"].mean().reset_index() #averaging values for each year
 
@@ -107,7 +107,8 @@ co2_largest = co2_95_overall.nlargest(5, "co2")
 #Which countries are making more effort to reduce Co2 emissions and which countries are making the least effort?
 
 #Find the countries with the highest values for co2
-co2_overall.sort_values(by = "co2", ascending = False).head(20)
+co2Abs= co2_country.mean().reset_index()
+co2Abs.sort_values(by = "co2", ascending = False).head(20)
 
 #Create a data frame for the top 5 countries
 co2AbsChina= co2[co2["country"]== "China"]
@@ -190,7 +191,85 @@ plt.draw()
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 # Question 6 ----------------------------------------------------------------
+#Are the countries with the highest temperature increase, the countries which pollute most?
+
+
+#group the temperature by country and year
+temperature_year_country=temperature.groupby(['Year','Country'])
+
+#getting the average temperature for each key
+Temp_country=temperature_year_country["AvgTemperature"].mean().reset_index()
+
+#sort the values 
+Temp_country= Temp_country.sort_values(by=["Country","Year"])
+
+for i in range(1, len(Temp_country)):
+    Temp["Temperature_growth"]=[]
+    if Temp["Country"][i] == Temp["Country"][i-1]:
+        Temp["Temperature_growth"] = (Temp["AvgTemperature"][i]-Temp["AvgTemperature"][i-1])/100
+    else:
+        Temp["Temperature_growth"][i]= np.nan
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 # Question 7 ----------------------------------------------------------------
 # Question 8 ----------------------------------------------------------------
 # Question 9 ----------------------------------------------------------------
