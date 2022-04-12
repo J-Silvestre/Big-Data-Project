@@ -15,18 +15,18 @@ import statsmodels.api as sm
 #rodrigo
 #url = "C:\\Users\\rodri\\OneDrive - ISEG\\iseg 22092021\\Iseg\\Master\\2semester\\Big Data Tools and Analytics\\data\\city_temperature.csv"
 #Joao
-#url = "C:\\Users\\joaod\\Desktop\\Big Data Tools\\Group Project\\city_temperature.csv"
+url = "C:\\Users\\joaod\\Desktop\\Big Data Tools\\Group Project\\city_temperature.csv"
 #Rosanna
-url = "C:\\Users\\Rosan\\OneDrive - ISEG\\2 BDTA_Big Data Tools and Analytics\\Group Project\\Project Data\\city_temperature.csv"
+#url = "C:\\Users\\Rosan\\OneDrive - ISEG\\2 BDTA_Big Data Tools and Analytics\\Group Project\\Project Data\\city_temperature.csv"
 
 temperature = pd.read_csv(url)
 
 #Rodrigo
 #url2="C:\\Users\\rodri\\OneDrive - ISEG\\iseg 22092021\\Iseg\\Master\\2semester\\Big Data Tools and Analytics\\data\\co2_data.csv"
 #Joao
-#url2 = "C:\\Users\\joaod\\Desktop\\Big Data Tools\\Group Project\\co2_data.csv"
+url2 = "C:\\Users\\joaod\\Desktop\\Big Data Tools\\Group Project\\co2_data.csv"
 #Rosanna
-url2 = "C:\\Users\\Rosan\\OneDrive - ISEG\\2 BDTA_Big Data Tools and Analytics\\Group Project\\Project Data\\co2_data.csv"
+#url2 = "C:\\Users\\Rosan\\OneDrive - ISEG\\2 BDTA_Big Data Tools and Analytics\\Group Project\\Project Data\\co2_data.csv"
 
 co2 = pd.read_csv(url2)
 
@@ -40,7 +40,7 @@ temperature = temperature[temperature["Year"] < 2020] # there are very few rows 
 temperatureYear= temperature.groupby(['Year']) #grouping temperature by year
 Temp=temperatureYear["AvgTemperature"].mean().reset_index() #averging values for each year
 
-co2= co2[["iso_code","country","year","co2","consumption_co2","co2_growth_prct","co2_growth_abs","co2_per_capita"]]
+co2= co2[["iso_code","country","year","co2","consumption_co2","co2_growth_prct","co2_growth_abs","co2_per_capita","gdp"]]
 co2["id"] = co2.index
 co2=co2.set_index("id")
 co2_country= co2.groupby("country")
@@ -257,7 +257,7 @@ ax.plot(x, z, "-")
 # Question 6 ----------------------------------------------------------------
 #Are the countries with the highest temperature increase, the countries which pollute most?
 
-
+"""
 #group the temperature by country and year
 temperature_year_country=temperature.groupby(['Year','Country'])
 
@@ -290,7 +290,7 @@ for i in range(0, len(Temp_country)):
 Temp_country= Temp_country.sort_values(by= "Temperature_growth", ascending= False)
 Temp_country.dropna()
 
-
+"""
 
 
 
@@ -337,6 +337,37 @@ co2_overall = co2_year["co2"].mean().reset_index()
 
 
 # Question 8 ----------------------------------------------------------------
+# Do countries with higher GDP pollute more?
+co2GDPChina= co2[co2["country"]== "China"]
+co2GDPChina = co2GDPChina[co2GDPChina["year"]>1994].dropna()
+
+co2GDPUsa= co2[co2["country"]== "United States"]
+co2GDPUsa = co2GDPUsa[co2GDPUsa["year"]>1994].dropna()
+
+co2GDPIndia= co2[co2["country"]== "India"]
+co2GDPIndia = co2GDPIndia[co2GDPIndia["year"]>1994].dropna()
+
+co2GDPRussia= co2[co2["country"]== "Russia"]
+co2GDPRussia = co2GDPRussia[co2GDPRussia["year"]>1994].dropna()
+
+co2GDPJapan= co2[co2["country"]== "Japan"]
+co2GDPJapan = co2GDPJapan[co2GDPJapan["year"]>1994].dropna()
+
+
+plt.plot(co2GDPJapan.year, co2GDPChina.gdp, label = "China")
+plt.plot(co2GDPJapan.year, co2GDPUsa.gdp, label = "USA")
+plt.plot(co2GDPJapan.year, co2GDPIndia.gdp, label = "India")
+plt.plot(co2GDPJapan.year, co2GDPRussia.gdp, label = "Russia")
+plt.plot(co2GDPJapan.year, co2GDPJapan.gdp, label = "Japan")
+plt.xlabel('Year')
+plt.ylabel('gdp')
+plt.title("gdp production in top 5 countries")
+plt.legend()
+plt.xlim([1995, 2018])
+plt.show()
+
+
+
 # Question 9 ----------------------------------------------------------------
 # Question 10 ----------------------------------------------------------------
 # Question 11 ----------------------------------------------------------------
