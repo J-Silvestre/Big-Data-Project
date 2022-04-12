@@ -177,11 +177,39 @@ plt.show()
 # Question 5 ----------------------------------------------------------------
 # How does the Co2 emissions relate with the temperature changes? Is there a relation?
 
+# Fit a linear regression model and calculate the R-square
 x = co2_95_overall["co2"] #co2 as independent variable
 y = Temp["AvgTemperature"] #temperature as dependent variable
 
-plt.plot(x, y, "o")
-plt.draw()
+x1 = sm.add_constant(x)
+model = sm.OLS(y, x1)
+result = model.fit()
+z = result.predict(x1)
+result.summary()
+
+# Plot linear regression model and effective data
+fig, ax = plt.subplots(figsize=(8,6))
+plt.xlabel('co2 (in million tonnes)')
+plt.ylabel('Average Temperature (in Fahrenheit)')
+plt.title('Linear Regression Model')
+
+ax.plot(x, y, "o")
+ax.plot(x, z, "-")
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
