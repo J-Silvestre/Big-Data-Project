@@ -26,7 +26,6 @@ co2 = pd.read_csv(url2)
 
 
 # Cleaning Data ------------------------------------------------------------------
-
 temperature= temperature.drop(columns=["State","Month", "Day"]) #dropping unnecessary columns
 temperature = temperature[temperature["AvgTemperature"] != -99] #they put -99 for rows without info
 temperature = temperature[temperature["Year"] < 2020] # there are very few rows available for 2020 onwards
@@ -34,11 +33,10 @@ temperature = temperature[temperature["Year"] < 2020] # there are very few rows 
 temperatureYear= temperature.groupby(['Year']) #grouping temperature by year
 Temp=temperatureYear["AvgTemperature"].mean().reset_index() #averging values for each year
 
-
-
 co2= co2[["iso_code","country","year","co2","consumption_co2","co2_growth_prct","co2_growth_abs","co2_per_capita"]]
-co2["id"] = co2.index 
+co2["id"] = co2.index
 co2=co2.set_index("id")
+
 co2_year = co2.groupby(["year"]) #grouping co2 by year
 co2_overall = co2_year["co2"].mean().reset_index() #averaging values for each year
 
@@ -49,37 +47,26 @@ co2_95_overall = co2_95["co2"].mean().reset_index() #averaging values for each y
 
 # Question 1 -----------------------------------------------------------------
 # How is the average temperature of the world changing over time and how steep is the temperature increase?
-sns.lineplot(data=Temp, x = "Year", y = "AvgTemperature").set(title = "Average Temperature over time")
-
-
-# Question 2 ----------------------------------------------------------------
-# How are the Co2 emissions of the world changing over time and how steep is the emission increase/decrease?
-sns.lineplot(data=co2_overall, x = "year", y = "co2").set(title = "Co2 Emissions over time")
-
-# Question 3 ----------------------------------------------------------------
-
-# Which years had record temperatures? Are there also record Co2 emissions in those years?
-
-
 plt.plot(Temp.Year, Temp.AvgTemperature)
 plt.xlabel('Year')
 plt.ylabel('Average Temperature')
 plt.title('Average Temperature plot over time')
 plt.show()
-print(Temp.nlargest(5, "AvgTemperature"))
 
+
+# Question 2 ----------------------------------------------------------------
+# How are the Co2 emissions of the world changing over time and how steep is the emission increase/decrease?
 plt.plot(co2_95_overall.year, co2_95_overall.co2)
 plt.xlabel('Year')
 plt.ylabel('Co2 Emissions')
 plt.title('Co2 Emissions plot over time')
 plt.show()
-print(co2_95_overall.nlargest(5, "co2"))
 
 
-
-
-
-
+# Question 3 ----------------------------------------------------------------
+# Which years had record temperatures? Are there also record Co2 emissions in those years?
+temp_largest = Temp.nlargest(5, "AvgTemperature")
+co2_largest = co2_95_overall.nlargest(5, "co2")
 
 
 
@@ -182,7 +169,7 @@ plt.show()
 
 # Question 5 ----------------------------------------------------------------
 # How does the Co2 emissions relate with the temperature changes? Is there a relation?
-import statsmodels.api as sm
+"""import statsmodels.api as sm
 x = co2_95["co2"] #co2 as independent variable
 y = Temp["AvgTemperature"] #temperature as dependent variable
 
@@ -192,7 +179,7 @@ plt.draw()
 print(y)
 co2_95_overall.head()
 
-Temp.head()
+Temp.head()"""
 
 
 
