@@ -267,13 +267,28 @@ Temp_country=temperature_year_country["AvgTemperature"].mean().reset_index()
 #sort the values 
 Temp_country= Temp_country.sort_values(by=["Country","Year"])
 
-for i in range(1, len(Temp_country)):
-    Temp["Temperature_growth"]=[]
-    if Temp["Country"][i] == Temp["Country"][i-1]:
-        Temp["Temperature_growth"] = (Temp["AvgTemperature"][i]-Temp["AvgTemperature"][i-1])/100
-    else:
-        Temp["Temperature_growth"][i]= np.nan
+#Create a new index to replace
+Index=[]
+for i in range(len(Temp_country["Year"])):
+    Index.append(i)
+#Adding the index to new data frame   
+Temp_country["Index"]= Index
+Temp_country=Temp_country.set_index("Index")
 
+
+#Create loop to add temperature growth column
+for i in range(0, len(Temp_country)):
+    if i == 0:
+        Temp_country["Temperature_growth"][i]= np.nan
+        continue
+    if Temp_country["Country"][i] == Temp_country["Country"][i-1]:
+        Temp_country["Temperature_growth"][i] = (Temp_country["AvgTemperature"][i]-Temp_country["AvgTemperature"][i-1])/100
+    else:
+        Temp_country["Temperature_growth"][i]= np.nan
+
+
+Temp_country= Temp_country.sort_values(by= "Temperature_growth", ascending= False)
+Temp_country.dropna()
 
 
 
