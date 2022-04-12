@@ -44,31 +44,25 @@ co2_95_overall = co2_95["co2"].mean().reset_index() #averaging values for each y
 
 # Question 1 -----------------------------------------------------------------
 # How is the average temperature of the world changing over time and how steep is the temperature increase?
-sns.lineplot(data=Temp, x = "Year", y = "AvgTemperature").set(title = "Average Temperature over time")
-
-
-# Question 2 ----------------------------------------------------------------
-# How are the Co2 emissions of the world changing over time and how steep is the emission increase/decrease?
-sns.lineplot(data=co2_overall, x = "year", y = "co2").set(title = "Co2 Emissions over time")
-
-# Question 3 ----------------------------------------------------------------
-
-# Which years had record temperatures? Are there also record Co2 emissions in those years?
-
-
 plt.plot(Temp.Year, Temp.AvgTemperature)
 plt.xlabel('Year')
 plt.ylabel('Average Temperature')
 plt.title('Average Temperature plot over time')
 plt.show()
-print(Temp.nlargest(5, "AvgTemperature"))
 
+# Question 2 ----------------------------------------------------------------
+# How are the Co2 emissions of the world changing over time and how steep is the emission increase/decrease?
 plt.plot(co2_95_overall.year, co2_95_overall.co2)
-plt.xlabel('Year')
+plt.xlabel('year')
 plt.ylabel('Co2 Emissions')
 plt.title('Co2 Emissions plot over time')
 plt.show()
-plt.show()
+
+
+# Question 3 ----------------------------------------------------------------
+# Which years had record temperatures? Are there also record Co2 emissions in those years?
+
+print(Temp.nlargest(5, "AvgTemperature"))
 print(co2_95_overall.nlargest(5, "co2"))
 
 
