@@ -4,15 +4,21 @@ import matplotlib.pyplot as plt
 
 
 # Importing Files ---------------------------------------------------------------
+#rodrigo
+url = "C:\\Users\\rodri\\OneDrive - ISEG\\iseg 22092021\\Iseg\\Master\\2semester\\Big Data Tools and Analytics\\data\\city_temperature.csv"
+#Joao
+#url = "C:\\Users\\joaod\\Desktop\\Big Data Tools\\Group Project\\city_temperature.csv"
+#Rosanna
 
-#Rurl = "C:\\Users\\rodri\\OneDrive - ISEG\\iseg 22092021\\Iseg\\Master\\2semester\\Big Data Tools and Analytics\\data\\city_temperature.csv"
-Jurl = "C:\\Users\\joaod\\Desktop\\Big Data Tools\\Group Project\\city_temperature.csv"
-temperature = pd.read_csv(Jurl)
+temperature = pd.read_csv(url)
 
+#Rodrigo
+url2="C:\\Users\\rodri\\OneDrive - ISEG\\iseg 22092021\\Iseg\\Master\\2semester\\Big Data Tools and Analytics\\data\\co2_data.csv"
+#Joao
+#url2 = "C:\\Users\\joaod\\Desktop\\Big Data Tools\\Group Project\\co2_data.csv"
+#Rosanna
 
-#Rurl2="C:\\Users\\rodri\\OneDrive - ISEG\\iseg 22092021\\Iseg\\Master\\2semester\\Big Data Tools and Analytics\\data\\co2_data.csv"
-Jurl2 = "C:\\Users\\joaod\\Desktop\\Big Data Tools\\Group Project\\co2_data.csv"
-co2 = pd.read_csv(Jurl2)
+co2 = pd.read_csv(url2)
 
 
 
@@ -42,6 +48,38 @@ plt.show()
 
 
 # Question 2 ----------------------------------------------------------------
+# Question 3 ----------------------------------------------------------------
+# Question 4 ----------------------------------------------------------------
+#Which countries are making more effort to reduce Co2 emissions and which countries are making the least effort?
+
+
+
+# Question 5 ----------------------------------------------------------------
+# Question 6 ----------------------------------------------------------------
+# Question 7 ----------------------------------------------------------------
+# Question 8 ----------------------------------------------------------------
+# Question 9 ----------------------------------------------------------------
+# Question 10 ----------------------------------------------------------------
+# Question 11 ----------------------------------------------------------------
+# Question 12 ----------------------------------------------------------------
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
