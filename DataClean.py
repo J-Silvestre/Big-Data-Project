@@ -8,18 +8,18 @@ import seaborn as sns
 #rodrigo
 #url = "C:\\Users\\rodri\\OneDrive - ISEG\\iseg 22092021\\Iseg\\Master\\2semester\\Big Data Tools and Analytics\\data\\city_temperature.csv"
 #Joao
-#url = "C:\\Users\\joaod\\Desktop\\Big Data Tools\\Group Project\\city_temperature.csv"
+url = "C:\\Users\\joaod\\Desktop\\Big Data Tools\\Group Project\\city_temperature.csv"
 #Rosanna
-url = "C:\\Users\\Rosan\\OneDrive - ISEG\\2 BDTA_Big Data Tools and Analytics\\Group Project\\Project Data\\city_temperature.csv"
+#url = "C:\\Users\\Rosan\\OneDrive - ISEG\\2 BDTA_Big Data Tools and Analytics\\Group Project\\Project Data\\city_temperature.csv"
 
 temperature = pd.read_csv(url)
 
 #Rodrigo
 #url2="C:\\Users\\rodri\\OneDrive - ISEG\\iseg 22092021\\Iseg\\Master\\2semester\\Big Data Tools and Analytics\\data\\co2_data.csv"
 #Joao
-#url2 = "C:\\Users\\joaod\\Desktop\\Big Data Tools\\Group Project\\co2_data.csv"
+url2 = "C:\\Users\\joaod\\Desktop\\Big Data Tools\\Group Project\\co2_data.csv"
 #Rosanna
-url2 = "C:\\Users\\Rosan\\OneDrive - ISEG\\2 BDTA_Big Data Tools and Analytics\\Group Project\\Project Data\\co2_data.csv"
+#url2 = "C:\\Users\\Rosan\\OneDrive - ISEG\\2 BDTA_Big Data Tools and Analytics\\Group Project\\Project Data\\co2_data.csv"
 
 co2 = pd.read_csv(url2)
 
@@ -37,87 +37,24 @@ Temp=temperatureYear["AvgTemperature"].mean().reset_index() #averging values for
 co2_year = co2.groupby(["year"]) #grouping co2 by year
 co2_overall = co2_year["co2"].mean().reset_index() #averaging values for each year
 
-co2_95 = co2[co2["year"]>1994].groupby(["year"]) # matching co2 year range with the climate year range
+co2_95 = co2[co2["year"]>1994]
+co2_95 = co2_95[co2_95["year"]<2020].groupby(["year"]) #matching co2 year range with the climate year range
 co2_95_overall = co2_95["co2"].mean().reset_index() #averaging values for each year
 
 
 # Question 1 -----------------------------------------------------------------
 # How is the average temperature of the world changing over time and how steep is the temperature increase?
-
-
-
-<<<<<<< HEAD
-
-#plt.plot(Temp.Year, Temp.AvgTemperature)
-=======
-plt.plot(Temp.Year, Temp.AvgTemperature)
->>>>>>> da49ab77efed3828291da4b2c7ffe86f3790efa0
-
-#plt.show()
-
-#Temp["Year"] = pd.to_datetime(Temp["Year"])
-
+sns.lineplot(data=Temp, x = "Year", y = "AvgTemperature").set(title = "Average Temperature over time")
 
 
 # Question 2 ----------------------------------------------------------------
 # How are the Co2 emissions of the world changing over time and how steep is the emission increase/decrease?
-
-
-
-
-
-
-
-
-sns.lineplot(data=co2_overall, x = "year", y = "co2").set(title = "Co2 Emissions")
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+sns.lineplot(data=co2_overall, x = "year", y = "co2").set(title = "Co2 Emissions over time")
 
 # Question 3 ----------------------------------------------------------------
-<<<<<<< HEAD
+
 # Which years had record temperatures? Are there also record Co2 emissions in those years?
-=======
-print(Temp)
-print(co2_95_overall)
 
-
-
-
-
-
-
-
-
->>>>>>> da49ab77efed3828291da4b2c7ffe86f3790efa0
 
 plt.plot(Temp.Year, Temp.AvgTemperature)
 plt.xlabel('Year')
@@ -129,7 +66,7 @@ print(Temp.nlargest(5, "AvgTemperature"))
 plt.plot(co2_95_overall.year, co2_95_overall.co2)
 plt.xlabel('Year')
 plt.ylabel('Co2 Emissions')
-plt.title('Co2 Emissions over time')
+plt.title('Co2 Emissions plot over time')
 plt.show()
 plt.show()
 print(co2_95_overall.nlargest(5, "co2"))
