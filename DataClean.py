@@ -15,18 +15,18 @@ import statsmodels.api as sm
 #rodrigo
 #url = "C:\\Users\\rodri\\OneDrive - ISEG\\iseg 22092021\\Iseg\\Master\\2semester\\Big Data Tools and Analytics\\data\\city_temperature.csv"
 #Joao
-url = "C:\\Users\\joaod\\Desktop\\Big Data Tools\\Group Project\\city_temperature.csv"
+#url = "C:\\Users\\joaod\\Desktop\\Big Data Tools\\Group Project\\city_temperature.csv"
 #Rosanna
-#url = "C:\\Users\\Rosan\\OneDrive - ISEG\\2 BDTA_Big Data Tools and Analytics\\Group Project\\Project Data\\city_temperature.csv"
+url = "C:\\Users\\Rosan\\OneDrive - ISEG\\2 BDTA_Big Data Tools and Analytics\\Group Project\\Project Data\\city_temperature.csv"
 
 temperature = pd.read_csv(url)
 
 #Rodrigo
 #url2="C:\\Users\\rodri\\OneDrive - ISEG\\iseg 22092021\\Iseg\\Master\\2semester\\Big Data Tools and Analytics\\data\\co2_data.csv"
 #Joao
-url2 = "C:\\Users\\joaod\\Desktop\\Big Data Tools\\Group Project\\co2_data.csv"
+#url2 = "C:\\Users\\joaod\\Desktop\\Big Data Tools\\Group Project\\co2_data.csv"
 #Rosanna
-#url2 = "C:\\Users\\Rosan\\OneDrive - ISEG\\2 BDTA_Big Data Tools and Analytics\\Group Project\\Project Data\\co2_data.csv"
+url2 = "C:\\Users\\Rosan\\OneDrive - ISEG\\2 BDTA_Big Data Tools and Analytics\\Group Project\\Project Data\\co2_data.csv"
 
 co2 = pd.read_csv(url2)
 
@@ -50,7 +50,7 @@ co2_overall = co2_year["co2"].mean().reset_index() #averaging values for each ye
 co2_95 = co2[co2["year"]>1994]
 co2_95 = co2_95[co2_95["year"]<2020].groupby(["year"]) #matching co2 year range with the climate year range
 co2_95_overall = co2_95["co2"].mean().reset_index() #averaging values for each year
-
+co2Abs= co2_country.mean().reset_index()
 
 # Question 1 -----------------------------------------------------------------
 # How is the average temperature of the world changing over time and how steep is the temperature increase?
@@ -112,7 +112,7 @@ plt.show()
 #Which countries are making more effort to reduce Co2 emissions and which countries are making the least effort?
 
 #Find the countries with the highest values for co2
-co2Abs= co2_country.mean().reset_index()
+
 co2Abs.sort_values(by = "co2", ascending = False).head(20)
 
 #Create a data frame for the top 5 countries
@@ -303,7 +303,24 @@ for i in range(1, len(Temp_country)):
 
 
 
+
+
+
+
 # Question 7 ----------------------------------------------------------------
+# Do the countries that emit the most Co2 overall, coincide with the countries that emit the most Co2 per capita?
+
+co2Abs.sort_values(by = "co2", ascending = False).head(20)
+co2Abs.sort_values(by = "co2_per_capita", ascending = False).head(20)
+
+co2Abs.head()
+
+co2_overall = co2_year["co2"].mean().reset_index()
+
+
+
+
+
 # Question 8 ----------------------------------------------------------------
 # Question 9 ----------------------------------------------------------------
 # Question 10 ----------------------------------------------------------------
