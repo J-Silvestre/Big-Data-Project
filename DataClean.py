@@ -137,7 +137,7 @@ ax.plot(x, z, "-")
 # Question 6 ----------------------------------------------------------------
 #Are the countries with the highest temperature increase, the countries which pollute most?
 
-"""
+
 #group the temperature by country and year
 temperature_year_country=temperature.groupby(['Year','Country'])
 
@@ -155,26 +155,35 @@ for i in range(len(Temp_country["Year"])):
 Temp_country["Index"]= Index
 Temp_country=Temp_country.set_index("Index")
 
+#create a new column with empty values
+Temp_growth=[]
+for i in range(len(Temp_country["Year"])):
+    Temp_growth.append(0)
+Temp_country["Temp_growth"]= Temp_growth    
+    
+    
 
 #Create loop to add temperature growth column
-for i in range(0, len(Temp_country)):
+for i in range(1, len(Temp_country)):
     if i == 0:
-        Temp_country["Temperature_growth"][i]= np.nan
+        Temp_country["Temp_growth"][i]= np.nan
         continue
     if Temp_country["Country"][i] == Temp_country["Country"][i-1]:
-        Temp_country["Temperature_growth"][i] = (Temp_country["AvgTemperature"][i]-Temp_country["AvgTemperature"][i-1])/100
+        Temp_country["Temp_growth"][i] = (Temp_country["AvgTemperature"][i] - Temp_country["AvgTemperature"][i-1])/100
     else:
-        Temp_country["Temperature_growth"][i]= np.nan
+        Temp_country["Temp_growth"][i]= np.nan
 
 
-Temp_country= Temp_country.sort_values(by= "Temperature_growth", ascending= False)
-Temp_country.dropna()
+#Gets rid of the nan created purposely
+Temp_country= Temp_country.dropna()
+Temp_country.drop(0, axis = 0)
 
-"""
+#Gives the biggest temperature growth changes that happened.
+Temp_country.sort_values(by= "Temp_growth", ascending= False).head(50)
 
 
 
-
+#ploting missing, i will do tomorrow
 
 
 
