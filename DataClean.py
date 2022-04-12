@@ -2,24 +2,31 @@
 import pandas as pd
 import numpy as np 
 import matplotlib.pyplot as plt
-import seaborn as sns
+import statsmodels.api as sm
+
+
+
+
+
+
+
 # Importing Files ---------------------------------------------------------------
 
 #rodrigo
 #url = "C:\\Users\\rodri\\OneDrive - ISEG\\iseg 22092021\\Iseg\\Master\\2semester\\Big Data Tools and Analytics\\data\\city_temperature.csv"
 #Joao
-url = "C:\\Users\\joaod\\Desktop\\Big Data Tools\\Group Project\\city_temperature.csv"
+#url = "C:\\Users\\joaod\\Desktop\\Big Data Tools\\Group Project\\city_temperature.csv"
 #Rosanna
-#url = "C:\\Users\\Rosan\\OneDrive - ISEG\\2 BDTA_Big Data Tools and Analytics\\Group Project\\Project Data\\city_temperature.csv"
+url = "C:\\Users\\Rosan\\OneDrive - ISEG\\2 BDTA_Big Data Tools and Analytics\\Group Project\\Project Data\\city_temperature.csv"
 
 temperature = pd.read_csv(url)
 
 #Rodrigo
 #url2="C:\\Users\\rodri\\OneDrive - ISEG\\iseg 22092021\\Iseg\\Master\\2semester\\Big Data Tools and Analytics\\data\\co2_data.csv"
 #Joao
-url2 = "C:\\Users\\joaod\\Desktop\\Big Data Tools\\Group Project\\co2_data.csv"
+#url2 = "C:\\Users\\joaod\\Desktop\\Big Data Tools\\Group Project\\co2_data.csv"
 #Rosanna
-#url2 = "C:\\Users\\Rosan\\OneDrive - ISEG\\2 BDTA_Big Data Tools and Analytics\\Group Project\\Project Data\\co2_data.csv"
+url2 = "C:\\Users\\Rosan\\OneDrive - ISEG\\2 BDTA_Big Data Tools and Analytics\\Group Project\\Project Data\\co2_data.csv"
 
 co2 = pd.read_csv(url2)
 
@@ -169,17 +176,13 @@ plt.show()
 
 # Question 5 ----------------------------------------------------------------
 # How does the Co2 emissions relate with the temperature changes? Is there a relation?
-"""import statsmodels.api as sm
-x = co2_95["co2"] #co2 as independent variable
+
+x = co2_95_overall["co2"] #co2 as independent variable
 y = Temp["AvgTemperature"] #temperature as dependent variable
 
-plt.plot(x, y, "-")
+plt.plot(x, y, "o")
 plt.draw()
 
-print(y)
-co2_95_overall.head()
-
-Temp.head()"""
 
 
 
@@ -194,7 +197,6 @@ Temp.head()"""
 # Question 10 ----------------------------------------------------------------
 # Question 11 ----------------------------------------------------------------
 # Question 12 ----------------------------------------------------------------
-
 
 
 
