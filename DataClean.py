@@ -21,7 +21,7 @@ co2 = pd.read_csv(Jurl2)
 temperature= temperature.drop(columns=["State","Month", "Day"]) #dropping unnecessary columns
 temperature = temperature[temperature["AvgTemperature"] != -99] #they put -99 for rows without info
 temperature = temperature[temperature["Year"] < 2020] # there are very few rows available for 2020 onwards
-
+co2_95 = co2[co2["Year"]>1994] # matching co2 year range with the climate year range
 
 
 # Question 1 -----------------------------------------------------------------
