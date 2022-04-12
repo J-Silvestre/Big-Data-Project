@@ -42,7 +42,7 @@ co2_95_overall = co2_95["co2"].mean().reset_index() #averaging values for each y
 
 
 # Question 1 -----------------------------------------------------------------
-
+# How is the average temperature of the world changing over time and how steep is the temperature increase?
 
 
 
@@ -56,7 +56,7 @@ plt.show()
 
 
 # Question 2 ----------------------------------------------------------------
-
+# How are the Co2 emissions of the world changing over time and how steep is the emission increase/decrease?
 
 
 
