@@ -84,30 +84,6 @@ plt.xlabel('Year')
 plt.show()
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 # Question 4 ----------------------------------------------------------------
 #Which countries are making more effort to reduce Co2 emissions and which countries are making the least effort?
 
@@ -135,51 +111,6 @@ plt.legend()
 plt.show()
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 # Question 5 ----------------------------------------------------------------
 # How does the Co2 emissions relate with the temperature changes? Is there a relation?
 
@@ -201,57 +132,6 @@ plt.title('Linear Regression Model')
 
 ax.plot(x, y, "o")
 ax.plot(x, z, "-")
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 # Question 6 ----------------------------------------------------------------
@@ -325,12 +205,32 @@ Temp_country.dropna()
 # Question 7 ----------------------------------------------------------------
 # Do the countries that emit the most Co2 overall, coincide with the countries that emit the most Co2 per capita?
 
-co2Abs.sort_values(by = "co2", ascending = False).head(20)
-co2Abs.sort_values(by = "co2_per_capita", ascending = False).head(20)
+# Create a dataframe with top 5 countries for average co2 production over all years
+co2_top20 = co2Abs.sort_values(by = "co2", ascending = False).head(20)
+co2_top5Countries = ["China", "United States", "Germany", "Russia", "Japan"]
 
-co2Abs.head()
+df_co2_top5Countries = co2_top20[co2_top20.country.isin(co2_top5Countries)]
 
-co2_overall = co2_year["co2"].mean().reset_index()
+# Create a dataframe with top 5 countries for average co2/capita over all years
+co2pCapita_top20 = co2Abs.sort_values(by = "co2_per_capita", ascending = False).head(20)
+co2pCapita_top5Countries = ["Sint Maarten (Dutch part)", "Curacao", "Qatar", "Bonaire Sint Eustatius and Saba", "United Arab Emirates"]
+
+df_co2pCapita_top5Countries = co2pCapita_top20[co2pCapita_top20.country.isin(co2pCapita_top5Countries)]
+
+# Plot bar chart for top 5 Countries of co2
+plt.bar(df_co2_top5Countries.country, df_co2_top5Countries.co2)
+
+# Plot bar chart for top 5 Countries of co2 per Capita
+plt.bar(df_co2pCapita_top5Countries.country, df_co2pCapita_top5Countries.co2_per_capita)
+
+
+
+
+
+
+
+
+
 
 
 
