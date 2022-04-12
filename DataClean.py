@@ -31,16 +31,21 @@ co2 = pd.read_csv(url2)
 temperature= temperature.drop(columns=["State","Month", "Day"]) #dropping unnecessary columns
 temperature = temperature[temperature["AvgTemperature"] != -99] #they put -99 for rows without info
 temperature = temperature[temperature["Year"] < 2020] # there are very few rows available for 2020 onwards
-co2_95 = co2[co2["year"]>1994] # matching co2 year range with the climate year range
+
+temperatureYear= temperature.groupby(['Year']) #grouping temperature by year
+Temp=temperatureYear["AvgTemperature"].mean().reset_index() #averging values for each year
+
+co2_year = co2.groupby(["year"]) #grouping co2 by year
+co2_overall = co2_year["co2"].mean().reset_index() #averaging values for each year
+
+co2_95 = co2[co2["year"]>1994].groupby["year"] # matching co2 year range with the climate year range
+co2_95_overall = co2_95["co2"].mean().reset_index() #averaging values for each year
 
 
 # Question 1 -----------------------------------------------------------------
 
-temperatureYear= temperature.groupby(['Year','Country'])
 
-Temp=temperatureYear["AvgTemperature"].mean().reset_index()
 
-Temp
 
 
 plt.plot(Temp.Year, Temp.AvgTemperature)
@@ -93,7 +98,6 @@ plt.show()
 
 
 # Question 3 ----------------------------------------------------------------
-
 
 
 
