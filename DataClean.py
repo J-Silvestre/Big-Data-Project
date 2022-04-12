@@ -40,7 +40,7 @@ temperature = temperature[temperature["Year"] < 2020] # there are very few rows 
 temperatureYear= temperature.groupby(['Year']) #grouping temperature by year
 Temp=temperatureYear["AvgTemperature"].mean().reset_index() #averging values for each year
 
-co2= co2[["iso_code","country","year","co2","consumption_co2","co2_growth_prct","co2_growth_abs","co2_per_capita","gdp"]]
+co2= co2[["iso_code","country","year","co2","consumption_co2","co2_growth_prct","co2_growth_abs","co2_per_capita","gdp", "population"]]
 co2["id"] = co2.index
 co2=co2.set_index("id")
 co2_country= co2.groupby("country")
@@ -353,7 +353,6 @@ co2GDPRussia = co2GDPRussia[co2GDPRussia["year"]>1994].dropna()
 co2GDPJapan= co2[co2["country"]== "Japan"]
 co2GDPJapan = co2GDPJapan[co2GDPJapan["year"]>1994].dropna()
 
-
 plt.plot(co2GDPJapan.year, co2GDPChina.gdp, label = "China")
 plt.plot(co2GDPJapan.year, co2GDPUsa.gdp, label = "USA")
 plt.plot(co2GDPJapan.year, co2GDPIndia.gdp, label = "India")
@@ -368,13 +367,56 @@ plt.show()
 
 
 
-# Question 9 ----------------------------------------------------------------
+# Question 9 -----------------------------------------------------------------
+# Which countries pollute the most and which countries pollute the least? 
+# How is this changing over time?
+
+#5largest: Qatar, United Arab Emirates, Saudi Arabia, Australia, United States
+#Create a data frame for the upper 5 countries
+co2_Q= co2[co2["country"]== "Qatar"]
+co2_UAE= co2[co2["country"]== "United Arab Emirates"]
+co2_SA= co2[co2["country"]== "Saudi Arabia"]
+co2_AUS= co2[co2["country"]== "Australia"]
+co2_USA= co2[co2["country"]== "United States"]
+#Creating a plot for top 5 country
+plt.plot(co2_Q.year, co2_Q.co2_per_capita, label = "Qatar")
+plt.plot(co2_UAE.year, co2_UAE.co2_per_capita, label = "UAE")
+plt.plot(co2_SA.year, co2_SA.co2_per_capita, label = "Saudi Arabia")
+plt.plot(co2_AUS.year, co2_AUS.co2_per_capita, label = "Australia")
+plt.plot(co2_USA.year, co2_USA.co2_per_capita, label = "USA")
+plt.xlabel('Year')
+plt.ylabel('Co2 per capita')
+plt.title("Co2 per capita production in top 5 countries")
+plt.legend()
+plt.xlim([1980, 2018])
+plt.show()
+
+
+#5smallest: Democratic Republic of Congo, Burundi, Central African Republic, Somalia, Chad
+#Create a data frame for the lower 5 countries
+co2_DRC= co2[co2["country"]== "Democratic Republic of Congo"]
+co2_B= co2[co2["country"]== "Burundi"]
+co2_CAR= co2[co2["country"]== "Central African Republic"]
+co2_S= co2[co2["country"]== "Somalia"]
+co2_C= co2[co2["country"]== "Chad"]
+#Creating a plot for lowest 5 country
+plt.plot(co2_DRC.year, co2_DRC.co2_per_capita, label = "Congo")
+plt.plot(co2_B.year, co2_B.co2_per_capita, label = "Burundi")
+plt.plot(co2_CAR.year, co2_CAR.co2_per_capita, label = "Central Africa")
+plt.plot(co2_S.year, co2_S.co2_per_capita, label = "Somalia")
+plt.plot(co2_C.year, co2_C.co2_per_capita, label = "Chad")
+plt.xlabel('Year')
+plt.ylabel('Co2 per capita')
+plt.title("Co2 per capita production in top 5 countries")
+plt.legend()
+plt.xlim([1980, 2018])
+plt.show()
+
+
+
 # Question 10 ----------------------------------------------------------------
 # Question 11 ----------------------------------------------------------------
 # Question 12 ----------------------------------------------------------------
-
-
-
 
 
 
