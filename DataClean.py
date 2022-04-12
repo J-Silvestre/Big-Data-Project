@@ -3,7 +3,6 @@ import pandas as pd
 import numpy as np 
 import matplotlib.pyplot as plt
 
-
 # Importing Files ---------------------------------------------------------------
 
 #rodrigo
@@ -38,7 +37,7 @@ Temp=temperatureYear["AvgTemperature"].mean().reset_index() #averging values for
 co2_year = co2.groupby(["year"]) #grouping co2 by year
 co2_overall = co2_year["co2"].mean().reset_index() #averaging values for each year
 
-co2_95 = co2[co2["year"]>1994].groupby["year"] # matching co2 year range with the climate year range
+co2_95 = co2[co2["year"]>1994].groupby(["year"]) # matching co2 year range with the climate year range
 co2_95_overall = co2_95["co2"].mean().reset_index() #averaging values for each year
 
 
@@ -97,9 +96,10 @@ plt.show()
 
 
 
+
 # Question 3 ----------------------------------------------------------------
-
-
+print(Temp)
+print(co2_95_overall)
 
 
 
