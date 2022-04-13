@@ -13,18 +13,18 @@ import statsmodels.api as sm
 # Importing Files ---------------------------------------------------------------
 
 #rodrigo
-url = "C:\\Users\\rodri\\OneDrive - ISEG\\iseg 22092021\\Iseg\\Master\\2semester\\Big Data Tools and Analytics\\data\\city_temperature.csv"
+#url = "C:\\Users\\rodri\\OneDrive - ISEG\\iseg 22092021\\Iseg\\Master\\2semester\\Big Data Tools and Analytics\\data\\city_temperature.csv"
 #Joao
-#url = "C:\\Users\\joaod\\Desktop\\Big Data Tools\\Group Project\\city_temperature.csv"
+url = "C:\\Users\\joaod\\Desktop\\Big Data Tools\\Group Project\\city_temperature.csv"
 #Rosanna
 #url = "C:\\Users\\Rosan\\OneDrive - ISEG\\2 BDTA_Big Data Tools and Analytics\\Group Project\\Project Data\\city_temperature.csv"
 
 temperature = pd.read_csv(url)
 
 #Rodrigo
-url2="C:\\Users\\rodri\\OneDrive - ISEG\\iseg 22092021\\Iseg\\Master\\2semester\\Big Data Tools and Analytics\\data\\co2_data.csv"
+#url2="C:\\Users\\rodri\\OneDrive - ISEG\\iseg 22092021\\Iseg\\Master\\2semester\\Big Data Tools and Analytics\\data\\co2_data.csv"
 #Joao
-#url2 = "C:\\Users\\joaod\\Desktop\\Big Data Tools\\Group Project\\co2_data.csv"
+url2 = "C:\\Users\\joaod\\Desktop\\Big Data Tools\\Group Project\\co2_data.csv"
 #Rosanna
 #url2 = "C:\\Users\\Rosan\\OneDrive - ISEG\\2 BDTA_Big Data Tools and Analytics\\Group Project\\Project Data\\co2_data.csv"
 
@@ -122,7 +122,7 @@ x1 = sm.add_constant(x)
 model = sm.OLS(y, x1)
 result = model.fit()
 z = result.predict(x1)
-result.summary()
+print(result.summary())
 
 # Plot linear regression model and effective data
 fig, ax = plt.subplots(figsize=(8,6))
@@ -131,9 +131,6 @@ plt.ylabel('Average Temperature (in Fahrenheit)')
 plt.title('Linear Regression Model')
 ax.plot(x, y, "o")
 ax.plot(x, z, "-")
-plt.xlabel('Year')
-plt.ylabel('Co2')
-plt.title("Co2 production in top 5 countries")
 plt.legend()
 plt.show()
 
@@ -259,7 +256,7 @@ plt.bar(df_co2_top5Countries.country, df_co2_top5Countries.co2)
 # Plot bar chart for top 5 Countries of co2 per Capita
 plt.bar(df_co2pCapita_top5Countries.country, df_co2pCapita_top5Countries.co2_per_capita)
 
-
+plt.show()
 
 
 
