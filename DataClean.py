@@ -245,29 +245,25 @@ co2_top5Countries = ["China", "United States", "Germany", "Russia", "Japan"]
 df_co2_top5Countries = co2_top20[co2_top20.country.isin(co2_top5Countries)]
 
 # Create a dataframe with top 5 countries for average co2/capita over all years
-co2pCapita_top20 = co2Abs.sort_values(by = "co2_per_capita", ascending = False).head(20)
-co2pCapita_top5Countries = ["Sint Maarten (Dutch part)", "Curacao", "Qatar", "Bonaire Sint Eustatius and Saba", "United Arab Emirates"]
+co2pCapita_top30 = co2Abs.sort_values(by = "co2_per_capita", ascending = False).head(30)
+co2pCapita_top5Countries = ["Qatar", "United Arab Emirates", "Saudi Arabia", "United States", "Australia"]
 
-df_co2pCapita_top5Countries = co2pCapita_top20[co2pCapita_top20.country.isin(co2pCapita_top5Countries)]
+df_co2pCapita_top5Countries = co2pCapita_top30[co2pCapita_top30.country.isin(co2pCapita_top5Countries)]
 df_co2pCapita_top5Countries
 
 # Plot bar chart for top 5 Countries of co2
 plt.bar(df_co2_top5Countries.country, df_co2_top5Countries.co2)
+plt.xlabel('Country')
+plt.ylabel('Mean Co2 production (in million tonnes)')
+plt.title("Average Co2 production in the top 5 countries")
 plt.show()
 
 # Plot bar chart for top 5 Countries of co2 per Capita
 plt.barh(df_co2pCapita_top5Countries.country, df_co2pCapita_top5Countries.co2_per_capita)
+plt.xlabel('Country')
+plt.ylabel('Mean Co2 per capita')
+plt.title("Average Co2 per capita production in the top 5 countries")
 plt.show()
-
-
-
-
-
-
-
-
-
-
 
 
 
