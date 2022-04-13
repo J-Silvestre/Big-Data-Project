@@ -40,6 +40,10 @@ temperature = temperature[temperature["Year"] < 2020] # there are very few rows 
 temperatureYear= temperature.groupby(['Year']) #grouping temperature by year
 Temp=temperatureYear["AvgTemperature"].mean().reset_index() #averging values for each year
 
+co2_big = co2[["iso_code","country","year","co2","consumption_co2","co2_growth_prct","co2_growth_abs","co2_per_capita","gdp", "population", "cement_co2", "coal_co2", "flaring_co2", "gas_co2", "oil_co2", "other_industry_co2"]]
+co2_big["id"] = co2_big.index
+co2_big = co2_big.set_index("id")
+
 co2= co2[["iso_code","country","year","co2","consumption_co2","co2_growth_prct","co2_growth_abs","co2_per_capita","gdp", "population"]]
 co2["id"] = co2.index
 co2=co2.set_index("id")
@@ -249,7 +253,6 @@ co2pCapita_top30 = co2Abs.sort_values(by = "co2_per_capita", ascending = False).
 co2pCapita_top5Countries = ["Qatar", "United Arab Emirates", "Saudi Arabia", "United States", "Australia"]
 
 df_co2pCapita_top5Countries = co2pCapita_top30[co2pCapita_top30.country.isin(co2pCapita_top5Countries)]
-df_co2pCapita_top5Countries
 
 # Plot bar chart for top 5 Countries of co2
 plt.bar(df_co2_top5Countries.country, df_co2_top5Countries.co2)
@@ -346,9 +349,91 @@ plt.show()
 
 
 # Question 10 ----------------------------------------------------------------
-# Question 11 ----------------------------------------------------------------
-# Question 12 ----------------------------------------------------------------
+# Which countries emit the most Co2 per industry in 2019?
+# Change question to: Which industries emit the most Co2 in 2019?
 
+co2_big_2019 = co2_big[co2_big["year"] == 2019]
+
+# Bar chart for top 5 countries in industry "cement"
+co2_cement_top30 = co2_big_2019.sort_values(by = "cement_co2", ascending = False).head(30)
+co2_cement_top5 = ["China", "India", "Vietnam", "United States", "Indonesia"]
+
+df_co2_cement_top5 = co2_cement_top30[co2_cement_top30.country.isin(co2_cement_top5)]
+
+plt.bar(df_co2_cement_top5.country, df_co2_cement_top5.cement_co2)
+plt.ylabel('Co2 production from cement (in million tonnes)')
+plt.title("Co2 production from cement in 2019 - top 5 countries")
+plt.show()
+
+# Bar chart for top 5 countries in industry "coal"
+co2_coal_top30 = co2_big_2019.sort_values(by = "coal_co2", ascending = False).head(30)
+co2_coal_top5 = ["China", "India", "United States", "Japan", "Russia"]
+
+df_co2_coal_top5 = co2_coal_top30[co2_coal_top30.country.isin(co2_coal_top5)]
+
+plt.bar(df_co2_coal_top5.country, df_co2_coal_top5.coal_co2)
+plt.ylabel('Co2 production from coal (in million tonnes)')
+plt.title("Co2 production from coal in 2019 - top 5 countries")
+plt.show()
+
+# Bar chart for top 5 countries in industry "gas"
+co2_gas_top30 = co2_big_2019.sort_values(by = "gas_co2", ascending = False).head(30)
+co2_gas_top5 = ["United States", "Russia", "China", "Iran", "Saudi Arabia"]
+
+df_co2_gas_top5 = co2_gas_top30[co2_gas_top30.country.isin(co2_gas_top5)]
+
+plt.bar(df_co2_gas_top5.country, df_co2_gas_top5.gas_co2)
+plt.ylabel('Co2 production from gas (in million tonnes)')
+plt.title("Co2 production from gas in 2019 - top 5 countries")
+plt.show()
+
+# Bar chart for top 5 countries in industry "oil"
+co2_oil_top30 = co2_big_2019.sort_values(by = "oil_co2", ascending = False).head(30)
+co2_oil_top5 = ["United States", "China","India", "Japan", "Russia"]
+
+df_co2_oil_top5 = co2_oil_top30[co2_oil_top30.country.isin(co2_oil_top5)]
+
+plt.bar(df_co2_oil_top5.country, df_co2_oil_top5.oil_co2)
+plt.ylabel('Co2 production from oil (in million tonnes)')
+plt.title("Co2 production from oil in 2019 - top 5 countries")
+plt.show()
+
+
+# Question 11 ----------------------------------------------------------------
+# Which countries consume the most energy?
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+# Question 12 ----------------------------------------------------------------
+# How much of other kind of gases do other countries emit, such as nitrous oxide or methane?
 
 
 
