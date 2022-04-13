@@ -13,18 +13,18 @@ import statsmodels.api as sm
 # Importing Files ---------------------------------------------------------------
 
 #rodrigo
-#url = "C:\\Users\\rodri\\OneDrive - ISEG\\iseg 22092021\\Iseg\\Master\\2semester\\Big Data Tools and Analytics\\data\\city_temperature.csv"
+url = "C:\\Users\\rodri\\OneDrive - ISEG\\iseg 22092021\\Iseg\\Master\\2semester\\Big Data Tools and Analytics\\data\\city_temperature.csv"
 #Joao
-url = "C:\\Users\\joaod\\Desktop\\Big Data Tools\\Group Project\\city_temperature.csv"
+#url = "C:\\Users\\joaod\\Desktop\\Big Data Tools\\Group Project\\city_temperature.csv"
 #Rosanna
 #url = "C:\\Users\\Rosan\\OneDrive - ISEG\\2 BDTA_Big Data Tools and Analytics\\Group Project\\Project Data\\city_temperature.csv"
 
 temperature = pd.read_csv(url)
 
 #Rodrigo
-#url2="C:\\Users\\rodri\\OneDrive - ISEG\\iseg 22092021\\Iseg\\Master\\2semester\\Big Data Tools and Analytics\\data\\co2_data.csv"
+url2="C:\\Users\\rodri\\OneDrive - ISEG\\iseg 22092021\\Iseg\\Master\\2semester\\Big Data Tools and Analytics\\data\\co2_data.csv"
 #Joao
-url2 = "C:\\Users\\joaod\\Desktop\\Big Data Tools\\Group Project\\co2_data.csv"
+#url2 = "C:\\Users\\joaod\\Desktop\\Big Data Tools\\Group Project\\co2_data.csv"
 #Rosanna
 #url2 = "C:\\Users\\Rosan\\OneDrive - ISEG\\2 BDTA_Big Data Tools and Analytics\\Group Project\\Project Data\\co2_data.csv"
 
@@ -129,10 +129,13 @@ fig, ax = plt.subplots(figsize=(8,6))
 plt.xlabel('co2 (in million tonnes)')
 plt.ylabel('Average Temperature (in Fahrenheit)')
 plt.title('Linear Regression Model')
-
 ax.plot(x, y, "o")
 ax.plot(x, z, "-")
-
+plt.xlabel('Year')
+plt.ylabel('Co2')
+plt.title("Co2 production in top 5 countries")
+plt.legend()
+plt.show()
 
 # Question 6 ----------------------------------------------------------------
 #Are the countries with the highest temperature increase, the countries which pollute most?
@@ -176,14 +179,38 @@ for i in range(1, len(Temp_country)):
 
 #Gets rid of the nan created purposely
 Temp_country= Temp_country.dropna()
-Temp_country.drop(0, axis = 0)
+Temp_country= Temp_country.drop(0, axis = 0)
 
 #Gives the biggest temperature growth changes that happened.
-Temp_country.sort_values(by= "Temp_growth", ascending= False).head(50)
+Temp_country.sort_values(by= "Temp_growth", ascending= False).head(30)
+
+#Creating objects for the countries with the biggest changes in last years
+
+
+AvgBelgium=Temp_country[Temp_country["Country"]== "Belgium"]
+AvgCyprus= Temp_country[Temp_country["Country"]== "Cyprus"]
+AvgKyrgyzstan= Temp_country[Temp_country["Country"]== "Kyrgyzstan"]
+AvgUnited_States= Temp_country[Temp_country["Country"]== "US"]
+AvgEquador= Temp_country[Temp_country["Country"]== "Equador"]
+AvgNorway= Temp_country[Temp_country["Country"]== "Norway"]
+AvgUK= Temp_country[Temp_country["Country"]== "United Kingdom"]
+AvgChina = Temp_country[Temp_country["Country"]== "China"]
+
+plt.plot(AvgBelgium.Year, AvgBelgium.AvgTemperature, label = "Belgium")
+plt.plot(AvgKyrgyzstan.Year, AvgKyrgyzstan.AvgTemperature, label ="Kyrgyzstan")
+plt.plot(AvgUnited_States.Year, AvgUnited_States.AvgTemperature, label= "USA")
+plt.plot(AvgEquador.Year, AvgEquador.AvgTemperature, label ="Equador")
+plt.plot(AvgNorway.Year, AvgNorway.AvgTemperature, label = "Norway")
+plt.plot(AvgUK.Year, AvgUK.AvgTemperature, label = "Uk")
+plt.plot(AvgChina.Year, AvgChina.AvgTemperature, label= "China")
+plt.xlabel('Year')
+plt.ylabel('Average temperature')
+plt.title("Temperature changes in some countries")
+plt.legend(loc=2)
+plt.show()
 
 
 
-#ploting missing, i will do tomorrow
 
 
 
