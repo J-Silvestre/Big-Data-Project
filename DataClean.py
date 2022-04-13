@@ -450,13 +450,21 @@ plt.show()
 
 # highest emitters of nitrous_oxide today
 nitrous = new_co2[["country", "nitrous_oxide"]].sort_values(["nitrous_oxide"], ascending = False)
-nitrous_pie = nitrous["nitrous_oxide"].head(7).plot.pie(title="Largest Nitrous Oxide Polluters", labels=nitrous["country"], autopct='%1.1f%%', figsize=(5,15))
+df_nitrous1 = nitrous.head(7)
+df_nitrous2 = nitrous["nitrous_oxide"][7:].sum()
+new_row = pd.DataFrame(data = {"country": ["Others"], "nitrous_oxide": [df_nitrous2]})
+combination = pd.concat([df_nitrous1, new_row])
+nitrous_pie = combination["nitrous_oxide"].plot.pie(title="Largest Nitrous Oxide Polluters", labels=combination["country"], autopct='%1.1f%%', figsize=(5,15))
 nitrous_pie.set_ylabel("")
 plt.show()
 
 #highest emitters of methane
 methane = new_co2[["country", "methane"]].sort_values(["methane"], ascending = False)
-methane_pie = methane["methane"].head(7).plot.pie(title="Largest Methane Polluters", labels=methane["country"], autopct='%1.1f%%', figsize=(5,5))
+df_methane1 = methane.head(7)
+df_methane2 = methane["methane"][7:].sum()
+new_row = pd.DataFrame(data = {"country": ["Others"], "methane": [df_methane2]})
+combination = pd.concat([df_methane1, new_row])
+methane_pie = combination["methane"].plot.pie(title="Largest Methane Polluters", labels=combination["country"], autopct='%1.1f%%', figsize=(5,5))
 methane_pie.set_ylabel("")
 plt.show()
 
