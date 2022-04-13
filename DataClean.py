@@ -320,7 +320,7 @@ plt.plot(co2_AUS.year, co2_AUS.co2_per_capita, label = "Australia")
 plt.plot(co2_USA.year, co2_USA.co2_per_capita, label = "USA")
 plt.xlabel('Year')
 plt.ylabel('Co2 per capita')
-plt.title("Co2 per capita production in the top 5 countries")
+plt.title("Co2/capita Production in the top 5 countries")
 plt.legend()
 plt.xlim([1980, 2018])
 plt.show()
@@ -341,7 +341,7 @@ plt.plot(co2_S.year, co2_S.co2_per_capita, label = "Somalia")
 plt.plot(co2_C.year, co2_C.co2_per_capita, label = "Chad")
 plt.xlabel('Year')
 plt.ylabel('Co2 per capita')
-plt.title("Co2 per capita production in the lowest 5 countries")
+plt.title("Co2/capita Production - Lowest 5 Countries")
 plt.legend()
 plt.xlim([1980, 2018])
 plt.show()
@@ -362,7 +362,7 @@ df_co2_cement_top5 = co2_cement_top30[co2_cement_top30.country.isin(co2_cement_t
 
 plt.bar(df_co2_cement_top5.country, df_co2_cement_top5.cement_co2)
 plt.ylabel('Co2 production from cement (in million tonnes)')
-plt.title("Co2 production from cement in 2019 - top 5 countries")
+plt.title("Co2 Production from Cement in 2019 - Top 5 Countries")
 plt.show()
 
 # Bar chart for top 5 countries in industry "coal"
@@ -373,7 +373,7 @@ df_co2_coal_top5 = co2_coal_top30[co2_coal_top30.country.isin(co2_coal_top5)]
 
 plt.bar(df_co2_coal_top5.country, df_co2_coal_top5.coal_co2)
 plt.ylabel('Co2 production from coal (in million tonnes)')
-plt.title("Co2 production from coal in 2019 - top 5 countries")
+plt.title("Co2 Production from Coal in 2019 - Top 5 Countries")
 plt.show()
 
 # Bar chart for top 5 countries in industry "gas"
@@ -384,7 +384,7 @@ df_co2_gas_top5 = co2_gas_top30[co2_gas_top30.country.isin(co2_gas_top5)]
 
 plt.bar(df_co2_gas_top5.country, df_co2_gas_top5.gas_co2)
 plt.ylabel('Co2 production from gas (in million tonnes)')
-plt.title("Co2 production from gas in 2019 - top 5 countries")
+plt.title("Co2 Production from Gas in 2019 - Top 5 Countries")
 plt.show()
 
 # Bar chart for top 5 countries in industry "oil"
@@ -395,7 +395,7 @@ df_co2_oil_top5 = co2_oil_top30[co2_oil_top30.country.isin(co2_oil_top5)]
 
 plt.bar(df_co2_oil_top5.country, df_co2_oil_top5.oil_co2)
 plt.ylabel('Co2 production from oil (in million tonnes)')
-plt.title("Co2 production from oil in 2019 - top 5 countries")
+plt.title("Co2 Production from Oil in 2019 - Top 5 Countries")
 plt.show()
 
 
@@ -412,8 +412,8 @@ eneryperCapita_top10 = ["Qatar", "Iceland", "Singapore", "Trinidad and Tobago", 
 df_eneryperCapita_top10 = eneryperCapita_top30[eneryperCapita_top30.country.isin(eneryperCapita_top10)]
 
 plt.barh(df_eneryperCapita_top10.country, df_eneryperCapita_top10.energy_per_capita)
-plt.ylabel('Energy consumption per capita (in kilowatt-hours)')
-plt.title("Primary energy consumption per capita in 2019 - top 10 countries")
+plt.ylabel('Energy consumption/capita (kilowatt-hours)')
+plt.title("Primary Energy Consumption per Capita in 2019 - Top 10 Countries")
 plt.show()
 
 
