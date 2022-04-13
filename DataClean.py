@@ -40,7 +40,7 @@ temperature = temperature[temperature["Year"] < 2020] # there are very few rows 
 temperatureYear= temperature.groupby(['Year']) #grouping temperature by year
 Temp=temperatureYear["AvgTemperature"].mean().reset_index() #averging values for each year
 
-co2_big = co2[["iso_code","country","year","co2","consumption_co2","co2_growth_prct","co2_growth_abs","co2_per_capita","gdp", "population", "cement_co2", "coal_co2", "flaring_co2", "gas_co2", "oil_co2", "other_industry_co2"]]
+co2_big = co2[["iso_code","country","year","co2","consumption_co2", "co2_growth_prct","co2_growth_abs","co2_per_capita","energy_per_capita", "gdp", "population", "cement_co2", "coal_co2", "flaring_co2", "gas_co2", "oil_co2", "other_industry_co2"]]
 co2_big["id"] = co2_big.index
 co2_big = co2_big.set_index("id")
 
@@ -402,21 +402,19 @@ plt.show()
 # Question 11 ----------------------------------------------------------------
 # Which countries consume the most energy?
 
+co2_big_2019 = co2_big[co2_big["year"] == 2019]
+
+# Bar chart for top 5 countries in industry "cement"
+eneryperCapita_top30 = co2_big_2019.sort_values(by = "energy_per_capita", ascending = False).head(30)
+eneryperCapita_top10 = ["Qatar", "Iceland", "Singapore", "Trinidad and Tobago", "United Arab Emirates", "Kuwait", "Canada", "Norway", "Saudi Arabia", "Oman"]
 
 
+df_eneryperCapita_top10 = eneryperCapita_top30[eneryperCapita_top30.country.isin(eneryperCapita_top10)]
 
-
-
-
-
-
-
-
-
-
-
-
-
+plt.barh(df_eneryperCapita_top10.country, df_eneryperCapita_top10.energy_per_capita)
+plt.ylabel('Energy consumption per capita (in kilowatt-hours)')
+plt.title("Primary energy consumption per capita in 2019 - top 10 countries")
+plt.show()
 
 
 
