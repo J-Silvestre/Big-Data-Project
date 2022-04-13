@@ -15,18 +15,18 @@ import statsmodels.api as sm
 #rodrigo
 #url = "C:\\Users\\rodri\\OneDrive - ISEG\\iseg 22092021\\Iseg\\Master\\2semester\\Big Data Tools and Analytics\\data\\city_temperature.csv"
 #Joao
-#url = "C:\\Users\\joaod\\Desktop\\Big Data Tools\\Group Project\\city_temperature.csv"
+url = "C:\\Users\\joaod\\Desktop\\Big Data Tools\\Group Project\\city_temperature.csv"
 #Rosanna
-url = "C:\\Users\\Rosan\\OneDrive - ISEG\\2 BDTA_Big Data Tools and Analytics\\Group Project\\Project Data\\city_temperature.csv"
+#url = "C:\\Users\\Rosan\\OneDrive - ISEG\\2 BDTA_Big Data Tools and Analytics\\Group Project\\Project Data\\city_temperature.csv"
 
 temperature = pd.read_csv(url)
 
 #Rodrigo
 #url2="C:\\Users\\rodri\\OneDrive - ISEG\\iseg 22092021\\Iseg\\Master\\2semester\\Big Data Tools and Analytics\\data\\co2_data.csv"
 #Joao
-#url2 = "C:\\Users\\joaod\\Desktop\\Big Data Tools\\Group Project\\co2_data.csv"
+url2 = "C:\\Users\\joaod\\Desktop\\Big Data Tools\\Group Project\\co2_data.csv"
 #Rosanna
-url2 = "C:\\Users\\Rosan\\OneDrive - ISEG\\2 BDTA_Big Data Tools and Analytics\\Group Project\\Project Data\\co2_data.csv"
+#url2 = "C:\\Users\\Rosan\\OneDrive - ISEG\\2 BDTA_Big Data Tools and Analytics\\Group Project\\Project Data\\co2_data.csv"
 
 co2 = pd.read_csv(url2)
 
@@ -39,6 +39,14 @@ temperature = temperature[temperature["Year"] < 2020] # there are very few rows 
 
 temperatureYear= temperature.groupby(['Year']) #grouping temperature by year
 Temp=temperatureYear["AvgTemperature"].mean().reset_index() #averging values for each year
+
+new_co2 = co2[["country", "year", "co2", "nitrous_oxide", "methane"]].dropna()
+new_co2 = new_co2[new_co2["year"]==2016]
+new_co2 = new_co2[new_co2["country"]!="World"]
+new_co2 = new_co2[new_co2["country"]!="EU-27"]
+new_co2.drop(columns=["year"])
+new_co2 = new_co2.groupby("country")
+new_co2 = new_co2.mean().reset_index()
 
 co2_big = co2[["iso_code","country","year","co2","consumption_co2", "co2_growth_prct","co2_growth_abs","co2_per_capita","energy_per_capita", "gdp", "population", "cement_co2", "coal_co2", "flaring_co2", "gas_co2", "oil_co2", "other_industry_co2"]]
 co2_big["id"] = co2_big.index
@@ -434,8 +442,23 @@ plt.show()
 # Question 12 ----------------------------------------------------------------
 # How much of other kind of gases do other countries emit, such as nitrous oxide or methane?
 
+# co2, nitrous_oxide & methane in the world
+df = pd.DataFrame({"World":[35452.46, 3054.00, 8550.06]}, index=["Co2", "Nitrous Oxide", "Methane"])
+world_pie = df.plot.pie(y="World", title="World Gas Emissions", legend=False, autopct='%1.1f%%')
+world_pie.set_ylabel("")
+plt.show()
 
+# highest emitters of nitrous_oxide today
+nitrous = new_co2[["country", "nitrous_oxide"]].sort_values(["nitrous_oxide"], ascending = False)
+nitrous_pie = nitrous["nitrous_oxide"].head(7).plot.pie(title="Largest Nitrous Oxide Polluters", labels=nitrous["country"], autopct='%1.1f%%', figsize=(5,15))
+nitrous_pie.set_ylabel("")
+plt.show()
 
+#highest emitters of methane
+methane = new_co2[["country", "methane"]].sort_values(["methane"], ascending = False)
+methane_pie = methane["methane"].head(7).plot.pie(title="Largest Methane Polluters", labels=methane["country"], autopct='%1.1f%%', figsize=(5,5))
+methane_pie.set_ylabel("")
+plt.show()
 
 
 
