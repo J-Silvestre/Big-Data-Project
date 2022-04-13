@@ -60,7 +60,7 @@ co2Abs= co2_country.mean().reset_index()
 # How is the average temperature of the world changing over time and how steep is the temperature increase?
 plt.plot(Temp.Year, Temp.AvgTemperature)
 plt.xlabel('Year')
-plt.ylabel('Average Temperature (Fahrenheit')
+plt.ylabel('Average Temperature (Fahrenheit)')
 plt.title('Worldwide Average Temperature')
 plt.show()
 
@@ -69,7 +69,7 @@ plt.show()
 # How are the Co2 emissions of the world changing over time and how steep is the emission increase/decrease?
 plt.plot(co2_95_overall.year, co2_95_overall.co2)
 plt.xlabel('Year')
-plt.ylabel('Co2 Emissions (Co2 (in million tonnes)')
+plt.ylabel('Co2 (million tonnes)')
 plt.title('Worldwide Co2 Production')
 plt.show()
 
@@ -79,7 +79,7 @@ plt.show()
 co2_largest = co2_95_overall[co2_95_overall["year"]>2011]
 temp_largest = Temp[Temp["Year"]>2011]
 
-ax1 = co2_largest.co2.plot(color='blue', grid=True, label='Co2 (in million tonnes)')
+ax1 = co2_largest.co2.plot(color='blue', grid=True, label='Co2 (million tonnes)')
 ax2 = temp_largest.AvgTemperature.plot(color='red', grid=True, secondary_y=True, label='Average Temperature (Fahrenheit)')
 h1, l1 = ax1.get_legend_handles_labels()
 h2, l2 = ax2.get_legend_handles_labels()
@@ -110,7 +110,7 @@ plt.plot(co2AbsGermany.year, co2AbsGermany.co2, label = "Germany")
 plt.plot(co2AbsRussia.year, co2AbsRussia.co2, label = "Russia")
 plt.plot(co2AbsJapan.year, co2AbsJapan.co2, label = "Japan")
 plt.xlabel('Year')
-plt.ylabel('Co2 (in million tonnes)')
+plt.ylabel('Co2 (million tonnes)')
 plt.title("Co2 Production - Top 5 Countries")
 plt.legend()
 plt.show()
@@ -131,8 +131,8 @@ print(result.summary())
 
 # Plot linear regression model and effective data
 fig, ax = plt.subplots(figsize=(8,6))
-plt.xlabel('Co2 (in million tonnes)')
-plt.ylabel('Average Temperature (in Fahrenheit)')
+plt.xlabel('Co2 (million tonnes)')
+plt.ylabel('Average Temperature (Fahrenheit)')
 plt.title('Linear Regression Model')
 ax.plot(x, y, "o")
 ax.plot(x, z, "-")
