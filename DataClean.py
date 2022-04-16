@@ -15,18 +15,18 @@ import statsmodels.api as sm
 #rodrigo
 #url = "C:\\Users\\rodri\\OneDrive - ISEG\\iseg 22092021\\Iseg\\Master\\2semester\\Big Data Tools and Analytics\\data\\city_temperature.csv"
 #Joao
-#url = "C:\\Users\\joaod\\Desktop\\Big Data Tools\\Group Project\\city_temperature.csv"
+url = "C:\\Users\\joaod\\Desktop\\Big Data Tools\\Group Project\\city_temperature.csv"
 #Rosanna
-url = "C:\\Users\\Rosan\\OneDrive - ISEG\\2 BDTA_Big Data Tools and Analytics\\Group Project\\Project Data\\city_temperature.csv"
+#url = "C:\\Users\\Rosan\\OneDrive - ISEG\\2 BDTA_Big Data Tools and Analytics\\Group Project\\Project Data\\city_temperature.csv"
 
 temperature = pd.read_csv(url)
 
 #Rodrigo
 #url2="C:\\Users\\rodri\\OneDrive - ISEG\\iseg 22092021\\Iseg\\Master\\2semester\\Big Data Tools and Analytics\\data\\co2_data.csv"
 #Joao
-#url2 = "C:\\Users\\joaod\\Desktop\\Big Data Tools\\Group Project\\co2_data.csv"
+url2 = "C:\\Users\\joaod\\Desktop\\Big Data Tools\\Group Project\\co2_data.csv"
 #Rosanna
-url2 = "C:\\Users\\Rosan\\OneDrive - ISEG\\2 BDTA_Big Data Tools and Analytics\\Group Project\\Project Data\\co2_data.csv"
+#url2 = "C:\\Users\\Rosan\\OneDrive - ISEG\\2 BDTA_Big Data Tools and Analytics\\Group Project\\Project Data\\co2_data.csv"
 
 co2 = pd.read_csv(url2)
 
@@ -348,7 +348,7 @@ plt.plot(co2_S.year, co2_S.co2_per_capita, label = "Somalia")
 plt.plot(co2_C.year, co2_C.co2_per_capita, label = "Chad")
 plt.xlabel('Year')
 plt.ylabel('Co2/Capita (tonnes)')
-plt.title("Co2 per Capita Production - Lowest 5 Countries")
+plt.title("Co2/Capita Production - Lowest 5 Countries")
 plt.legend()
 plt.xlim([1980, 2018])
 plt.show()
@@ -442,7 +442,7 @@ plt.show()
 
 # co2, nitrous_oxide & methane in the world
 df = pd.DataFrame({"World":[35452.46, 3054.00, 8550.06]}, index=["Co2", "Nitrous Oxide", "Methane"])
-world_pie = df.plot.pie(y="World", title="World Gas Emissions", legend=False, autopct='%1.1f%%')
+world_pie = df.plot.pie(y="World", title="World Gas Emissions in 2016", legend=False, autopct='%1.1f%%')
 world_pie.set_ylabel("")
 plt.show()
 
@@ -452,7 +452,7 @@ df_nitrous1 = nitrous.head(7)
 df_nitrous2 = nitrous["nitrous_oxide"][7:].sum()
 new_row = pd.DataFrame(data = {"country": ["Others"], "nitrous_oxide": [df_nitrous2]})
 combination = pd.concat([df_nitrous1, new_row])
-nitrous_pie = combination["nitrous_oxide"].plot.pie(title="Largest Nitrous Oxide Polluters", labels=combination["country"], autopct='%1.1f%%', figsize=(5,15))
+nitrous_pie = combination["nitrous_oxide"].plot.pie(title="Largest Nitrous Oxide Producers in 2016", labels=combination["country"], autopct='%1.1f%%', figsize=(5,15))
 nitrous_pie.set_ylabel("")
 plt.show()
 
@@ -462,7 +462,7 @@ df_methane1 = methane.head(7)
 df_methane2 = methane["methane"][7:].sum()
 new_row = pd.DataFrame(data = {"country": ["Others"], "methane": [df_methane2]})
 combination = pd.concat([df_methane1, new_row])
-methane_pie = combination["methane"].plot.pie(title="Largest Methane Polluters", labels=combination["country"], autopct='%1.1f%%', figsize=(5,5))
+methane_pie = combination["methane"].plot.pie(title="Largest Methane Producers in 2016", labels=combination["country"], autopct='%1.1f%%', figsize=(5,5))
 methane_pie.set_ylabel("")
 plt.show()
 
