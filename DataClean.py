@@ -103,6 +103,7 @@ plt.title("Worldwide Average Temperature and Co2 Emissions")
 plt.show()
 
 
+
 # Question 4 ----------------------------------------------------------------
 #Which countries are making more effort to reduce Co2 emissions and which countries are making the least effort?
 
@@ -130,6 +131,7 @@ plt.legend()
 plt.show()
 
 
+
 # Question 5 ----------------------------------------------------------------
 # How does the Co2 emissions relate with the temperature changes? Is there a relation?
 
@@ -153,9 +155,10 @@ ax.plot(x, z, "-")
 plt.legend()
 plt.show()
 
+
+
 # Question 6 ----------------------------------------------------------------
 #Are the countries with the highest temperature increase, the countries which pollute most?
-
 
 #group the temperature by country and year
 temperature_year_country=temperature.groupby(['Year','Country'])
@@ -170,6 +173,7 @@ Temp_country= Temp_country.sort_values(by=["Country","Year"])
 Index=[]
 for i in range(len(Temp_country["Year"])):
     Index.append(i)
+
 #Adding the index to new data frame   
 Temp_country["Index"]= Index
 Temp_country=Temp_country.set_index("Index")
@@ -180,8 +184,6 @@ for i in range(len(Temp_country["Year"])):
     Temp_growth.append(0)
 Temp_country["Temp_growth"]= Temp_growth    
     
-    
-
 #Create loop to add temperature growth column
 for i in range(1, len(Temp_country)):
     if i == 0:
@@ -201,8 +203,6 @@ Temp_country= Temp_country.drop(0, axis = 0)
 Temp_country.sort_values(by= "Temp_growth", ascending= False).head(30)
 
 #Creating objects for the countries with the biggest changes in last years
-
-
 AvgBelgium=Temp_country[Temp_country["Country"]== "Belgium"]
 AvgCyprus= Temp_country[Temp_country["Country"]== "Cyprus"]
 AvgKyrgyzstan= Temp_country[Temp_country["Country"]== "Kyrgyzstan"]
@@ -280,7 +280,7 @@ plt.plot(co2GDPJapan.year, co2GDPRussia.gdp, label = "Russia")
 plt.plot(co2GDPJapan.year, co2GDPJapan.gdp, label = "Japan")
 plt.xlabel('Year')
 plt.ylabel('GDP (international-$) ')
-plt.title("GDP Production - Top 5 Countries")
+plt.title("GDP - Top 5 Countries")
 plt.legend()
 plt.xlim([1995, 2018])
 plt.show()
