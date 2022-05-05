@@ -84,6 +84,12 @@ plt.show()
 
 # Question 3 ----------------------------------------------------------------
 # Which years had record temperatures? Are there also record Co2 emissions in those years?
+
+#find years with highest values for co2 and temperature
+co2_years = co2_95_overall.sort_values(by = "co2", ascending = False).head(10)
+temp_years = Temp.sort_values(by = "AvgTemperature", ascending = False).head(10)
+
+#filtering only the years after 2012
 co2_largest = co2_95_overall[co2_95_overall["year"]>2011]
 temp_largest = Temp[Temp["Year"]>2011]
 
