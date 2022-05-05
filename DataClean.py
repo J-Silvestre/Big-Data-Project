@@ -15,18 +15,18 @@ import statsmodels.api as sm
 #rodrigo
 #url = "C:\\Users\\rodri\\OneDrive - ISEG\\iseg 22092021\\Iseg\\Master\\2semester\\Big Data Tools and Analytics\\data\\city_temperature.csv"
 #Joao
-#url = "C:\\Users\\joaod\\Desktop\\Big Data Tools\\Group Project\\city_temperature.csv"
+url = "C:\\Users\\joaod\\Desktop\\Big Data Tools\\Group Project\\city_temperature.csv"
 #Rosanna
-url = "C:\\Users\\Rosan\\OneDrive - ISEG\\2 BDTA_Big Data Tools and Analytics\\Group Project\\Project Data\\city_temperature.csv"
+#url = "C:\\Users\\Rosan\\OneDrive - ISEG\\2 BDTA_Big Data Tools and Analytics\\Group Project\\Project Data\\city_temperature.csv"
 
 temperature = pd.read_csv(url)
 
 #Rodrigo
 #url2="C:\\Users\\rodri\\OneDrive - ISEG\\iseg 22092021\\Iseg\\Master\\2semester\\Big Data Tools and Analytics\\data\\co2_data.csv"
 #Joao
-#url2 = "C:\\Users\\joaod\\Desktop\\Big Data Tools\\Group Project\\co2_data.csv"
+url2 = "C:\\Users\\joaod\\Desktop\\Big Data Tools\\Group Project\\co2_data.csv"
 #Rosanna
-url2 = "C:\\Users\\Rosan\\OneDrive - ISEG\\2 BDTA_Big Data Tools and Analytics\\Group Project\\Project Data\\co2_data.csv"
+#url2 = "C:\\Users\\Rosan\\OneDrive - ISEG\\2 BDTA_Big Data Tools and Analytics\\Group Project\\Project Data\\co2_data.csv"
 
 co2 = pd.read_csv(url2)
 
@@ -221,33 +221,6 @@ plt.show()
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 # Question 7 ----------------------------------------------------------------
 # Do the countries that emit the most Co2 overall, coincide with the countries that emit the most Co2 per capita?
 
@@ -425,18 +398,6 @@ plt.show()
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
 # Question 12 ----------------------------------------------------------------
 # How much of other kind of gases do other countries emit, such as nitrous oxide or methane?
 
@@ -465,17 +426,3 @@ combination = pd.concat([df_methane1, new_row])
 methane_pie = combination["methane"].plot.pie(title="Largest Methane Producers in 2016", labels=combination["country"], autopct='%1.1f%%', figsize=(5,5))
 methane_pie.set_ylabel("")
 plt.show()
-
-
-
-
-
-
-
-
-
-
-
-
-
-
